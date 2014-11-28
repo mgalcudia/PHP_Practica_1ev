@@ -1,7 +1,7 @@
 <?php
 /* Clase encargada de gestionar las conexiones a la base de datos */
 
-// Datos de configuraci�n. Estos podr�an ir en otro fichero
+// Datos de configuración. Estos podrán ir en otro fichero
 $db_conf=array(
 	'servidor'=>'localhost',
 	'usuario'=>'root',
@@ -18,16 +18,16 @@ Class Db {
 
 	static $_instance;
 
-	/*La funci�n construct es privada para evitar que el objeto pueda ser creado      mediante new*/
+	/*La función construct es privada para evitar que el objeto pueda ser creado mediante new*/
 	private function __construct(){
 		
 		$this->Conectar($GLOBALS['db_conf']);
 	}
 
-	/*Evitamos el clonaje del objeto. Patr�n Singleton*/
+	/*Evitamos el clonaje del objeto. Patrón Singleton*/
 	private function __clone(){ }
 
-	/*Funci�n encargada de crear, si es necesario, el objeto. Esta es la funci�n que debemos llamar desde fuera de la clase para instanciar el objeto, y as�, poder utilizar sus m�todos*/
+	/*Función encargada de crear, si es necesario, el objeto. Esta es la funci�n que debemos llamar desde fuera de la clase para instanciar el objeto, y así, poder utilizar sus métodos*/
 	public static function getInstance(){
 		if (!(self::$_instance instanceof self)){
 			self::$_instance=new self();
@@ -35,22 +35,22 @@ Class Db {
 		return self::$_instance;
 	}
 
-	/*Realiza la conexi�n a la base de datos.*/
+	/*Realiza la conexón a la base de datos.*/
 	private function Conectar($conf)
 	{
 		if (! is_array($conf))
 		{
-			echo "<p>Faltan parámetros de configuración</p>";
+			echo "<p>Faltan par�metros de configuraci�n</p>";
 			var_dump($conf);
-			// Puede que no se requiera ser tan 'expeditivos' y que lanzar una excepci�n sea m�s versatil
+			// Puede que no se requiera ser tan 'expeditivos' y que lanzar una excepción sea más versatil
 			exit();			
 		}
 		$this->link=new mysqli($conf['servidor'], $conf['usuario'], $conf['password']);
 
 		/* check connection */
 		if (! $this->link ) {
-			printf("Error de conexión: %s\n", mysqli_connect_error());
-			// Puede que no se requiera ser tan 'expeditivos' y que lanzar una excepci�n sea m�s versatil
+			printf("Error de conexi�n: %s\n", mysqli_connect_error());
+			// Puede que no se requiera ser tan 'expeditivos' y que lanzar una excepci�n sea más versatil
 			exit();
 		}
 		
@@ -91,7 +91,7 @@ Class Db {
 	}
 
 	/**
-	 * Devuelve el último registro leido
+	 * Devuelve el �ltimo registro leido
 	 */
 	public function RegistroActual()
 	{
@@ -100,7 +100,7 @@ Class Db {
 	
 
 	/**
-	 * Devuelve el valor del �ltimo campo autonum�rico insertado
+	 * Devuelve el valor del último campo autonumérico insertado
 	 * @return int
 	 */
 	public function LastID()

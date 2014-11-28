@@ -115,7 +115,7 @@ class modelo{
 		if($consulta){
 			
 			$this->bd->Consulta($consulta);
-			echo "Recepci�n anotada con �xito!";
+			echo "Recepción anotada con éxito!";
 		}
 		else {
 			echo "Error de consulta";

@@ -51,7 +51,7 @@ class controlador {
 }
 
 
-
+/*
 // array de prueba para insertar envios
 $datos = array (
 		'destinatario' => 'Juaqui',
@@ -66,7 +66,7 @@ $datos = array (
 		'fec_entrega' => '2020-01-06',
 		'observaciones' => 'uno que va y que viene' 
 );
-/*
+
 //idenvios de prueba para modificar dados
 $id= 6;
   //array de prueba para modificar envios

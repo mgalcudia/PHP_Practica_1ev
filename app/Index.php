@@ -19,16 +19,16 @@ if (isset($_GET['action']) && $_GET['action']=='listar'){
 	$mvc->BusquedaEnvios($datosBusqueda);
 }elseif (isset($_GET['action']) && $_GET['action']=='modificar'){
 	
-	$mvc->ModificaEnvios($datosmodificado, $id);
+	$mvc->ModificaEnvios($datosmodificado, $_GET['id']);
 }elseif (isset($_GET['action']) && $_GET['action']=='eliminar' ){
 	
-	$mvc->EliminaEnvios($id);
+	$mvc->EliminaEnvios($_GET['id']);
 }elseif (isset($_GET['action']) && $_GET['action']=='insertar'){
 	
-	$mvc->EliminaEnvios($id);
+	$mvc->EliminaEnvios($_GET['id']);
 }elseif (isset($_GET['action']) && $_GET['action']=='anotar'){
 	
-	$mvc->AnotaRecepcion($idRecepcion, $observaciones);
+	$mvc->AnotaRecepcion($_GET['id'], $observaciones);
 }
 
 else{

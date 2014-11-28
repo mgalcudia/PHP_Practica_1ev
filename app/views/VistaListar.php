@@ -21,6 +21,9 @@
 			<td>Fecha creación</td>
 			<td>Fecha estrega</td>
 			<td>Observaciones</td>
+			<td>Borrar</td>
+			<td>Modificar</td>
+			
 		</tr>
 		
 
@@ -33,6 +36,12 @@ foreach ( $listaEnvios as $clave => $valor ) {
 		echo$informacion;
 		echo "</td>";		
 	}	
+	echo "<td>";
+	echo  '<a href=index.php?action=eliminar&id='.$valor['idenvios'] .'>Borrar</a>'; ;
+	echo "</td>";
+	echo "<td>";
+	echo"modificar";
+	echo "</td>";
 	echo "</tr>";
 }
 

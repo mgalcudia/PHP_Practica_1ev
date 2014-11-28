@@ -13,7 +13,24 @@ class controlador {
 		$modificaEnvio = $this->modelo->ModificaEnvio ( $datosmodificado, $id );
 	}
 	function EliminaEnvios($id) {
-		$eliminaEnvio = $this->modelo->EliminaEnvios ( $id );
+
+		
+		if (isset($_GET['id'])) {
+			// TODO: hacer una función para comprobar si existe una id
+			if (true) {
+				if (isset($_GET['confirmar']) && $_GET['confirmar'] == "si") {
+					$this->modelo->EliminaEnvios ( $_GET['id'] );
+				} else if (isset($_GET['confirmar']) && $_GET['confirmar'] == "no") {
+					// TODO: mostrar formulario para insertar id
+				} else {
+					include 'views/BorrarRegistro.php'; // TODO: cambiar ruta relativa por absoluta
+				}
+			} else {
+				// TODO: mostrar formulario para insertar id pasandole la id incorrecta
+			}
+		} else {
+			// TODO: hacer formulario para insertar una id
+		}
 	}
 	function InsertaEnvios($datos) {
 		$insertEnvio = $this->modelo->InsertaEnvios ( $datos );

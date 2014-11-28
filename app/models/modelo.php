@@ -13,7 +13,10 @@ class modelo{
 		
 		$this->bd=Db::getInstance();
 	}
-		
+		/**
+		 * Función para averiguar el total de envios en la tabla envios
+		 * @return number 
+		 */
 	function TotalEnvios(){
 		$consulta='SELECT COUNT(*) as total FROM envios';
 		$totalEnvios = $this->bd->Consulta($consulta);
@@ -23,6 +26,11 @@ class modelo{
 		return $resultado['total'];
 	}
 	
+	/**
+	 * Número totales de páginas en la paginacion
+	 * @param number $totalEnvios
+	 * @return number 
+	 */
 	function PaginasTotales($totalEnvios){
 		$enviosPagina=3;
 		
@@ -33,6 +41,11 @@ class modelo{
 		
 	}
 	
+	/**
+	 * Página en la que nos encontramos ahora mismo
+	 * @param number $totalEnvios
+	 * @return Ambigous <number, valor get de la página>
+	 */
 	function PaginaActual($totalEnvios){
 		
 	
@@ -56,6 +69,10 @@ class modelo{
 	
 	}
 	
+	/**
+	 * Listar los envios, los introduce en un array asociativo
+	 * @return array 
+	 */
 	function ListaEnvios(){
 		$enviosPagina=3;
 		$paginaActual= $this->PaginaActual($enviosPagina);
@@ -72,7 +89,10 @@ class modelo{
 	
 	}
 	
-	
+	/**
+	 * Funcion para intsertar envios en la tabla, recibe un array con los valores a insertar
+	 * @param array $datos
+	 */
 	function InsertaEnvios($datos){
 		
 		$campos=[];
@@ -88,11 +108,13 @@ class modelo{
 		
 		
 		 $this->bd->Consulta($consulta);
-		
-		
-		//return $consulta;
 	}
 	
+	/**
+	 * Función para modificar envios en la tabla
+	 * @param array $datos
+	 * @param id de la tabla $id
+	 */
 	function ModificaEnvio($datos, $id){
 		
 		$campos=[];
@@ -107,10 +129,13 @@ class modelo{
 		$consulta= "update envios set ".$camposIgualados." where idenvios= ".$id; 
 		
 		$this->bd->Consulta($consulta);
-		// return $consulta;
+		
 	}
 	
-	
+	/**
+	 * Función para eliminar envios de la tabla
+	 * @param id de la tabla $id
+	 */
 	function  EliminaEnvios($id){
 		
 		$consulta= "delete from envios where idenvios= ".$id;
@@ -121,6 +146,11 @@ class modelo{
 		
 	}
 	
+	/**
+	 * Función para anotar una recepcion
+	 * @param id de la tabla $id
+	 * @param array $observaciones
+	 */
 	function AnotaRecepcion($id,$observaciones){
 		
 		
@@ -137,7 +167,11 @@ class modelo{
 		 // return $consulta;	
 	}
 	
-	
+	/**
+	 * Función para buscar envios
+	 * @param array $datos
+	 * @return array asociativo con los datos del envio
+	 */
 	function BuscarEnvios($datos){		
 		$campos=[];
 		$valores=[];

@@ -25,6 +25,7 @@
 		
 
 <?php
+
 foreach ( $listaEnvios as $clave => $valor ) {
 	echo "<tr>";
 	foreach ( $valor as $informacion ) {
@@ -42,6 +43,17 @@ foreach ( $listaEnvios as $clave => $valor ) {
  
 	</table>
 	<?php 
+	
+	for($i=0;$i<$paginasTotales;$i++){
+	
+if($i==1 ||$i==$paginasTotales ||  $i==$paginaActual||($i > $paginaActual - 2 && $i <= $paginaActual + 2)){
+
+	echo '<a href=?pagina=' . $i .'>' . $i . '</a>';
+}
+
+
+}
+
 	
 	?>
 

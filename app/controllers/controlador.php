@@ -24,15 +24,28 @@ class controlador {
 		$anotaRecepcion = $this->modelo->AnotaRecepcion ( $idRecepcion, $observaciones );
 	}
 	function ListarEnvios() {
+		
 		$listaEnvios = $this->modelo->ListaEnvios ();
+		$totalEnvios= $this->modelo->TotalEnvios();
+		$paginasTotales= $this->modelo->PaginasTotales($totalEnvios);
+		$paginaActual=$this->modelo->PaginaActual($totalEnvios);
+		
+		/*
+		if($totalEnvios){
+		echo "<pre>";
+		print_r($paginaActual);
+		echo "</pre>";
+		}
+		else{
+			echo 'NULO';
+		}
+		*/
+		
 		
 		if (isset ( $listaEnvios )) {
-		/*echo "<pre>";
-			print_r ( $listaEnvios );
-			echo "</pre>"; */
-			
 			
 			include Raiz . '\views\VistaListar.php';
+			
 			
 		} else {
 		
@@ -41,6 +54,8 @@ class controlador {
 						</p></body></html>';
 			
 		}
+		
+		
 	}
 	function Inicio() {
 		include Raiz . '\views\Inicio.php';

@@ -7,20 +7,34 @@ require Raiz.'\db.php';
 
 class modelo{
 	
-	
+	private $bd;
 	
 	function __construct(){
 		
 		$this->bd=Db::getInstance();
 	}
 		
+	function TotalEnvios(){
+		$consulta='SELECT COUNT(*) as total FROM envios';
+		$totalEnvios = $this->bd->Consulta($consulta);
+		
+		$resultado = $this->bd->LeeRegistro($totalEnvios);
+		
+		return $resultado['total'];
+	}
 	
-	
-	
-	function Paginacion($enviosPagina){
-		$consulta='SELECT * FROM envios';
-		$totalEnvios = count($this->bd->Consulta($consulta));		
+	function PaginasTotales($totalEnvios){
+		$enviosPagina=3;
+		
 		$paginasTotal= ceil($totalEnvios/$enviosPagina);
+		
+		return $paginasTotal;
+		
+		
+	}
+	
+	function PaginaActual($totalEnvios){
+		
 	
 		if(isset($_GET['pagina'])){
 				
@@ -44,7 +58,7 @@ class modelo{
 	
 	function ListaEnvios(){
 		$enviosPagina=3;
-		$paginaActual= $this->Paginacion($enviosPagina);
+		$paginaActual= $this->PaginaActual($enviosPagina);
 		$paginaInicial= ($paginaActual-1)*$enviosPagina;
 	
 		$consulta='SELECT * FROM envios order by fec_creacion desc limit '.$paginaActual.','.$enviosPagina;

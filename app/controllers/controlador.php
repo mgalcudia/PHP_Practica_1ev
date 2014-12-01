@@ -14,16 +14,15 @@ class controlador {
 	}
 	function EliminaEnvios($id) {
 
-		
 		if (isset($_GET['id'])) {
-			// TODO: hacer una función para comprobar si existe una id
-			if (true) {
+			$eliminar=$this->modelo->ExisteId($_GET['id']);//función para comprobar si existe una id
+			if ($eliminar) {
 				if (isset($_GET['confirmar']) && $_GET['confirmar'] == "si") {
 					$this->modelo->EliminaEnvios ( $_GET['id'] );
 				} else if (isset($_GET['confirmar']) && $_GET['confirmar'] == "no") {
 					// TODO: mostrar formulario para insertar id
 				} else {
-					include 'views/BorrarRegistro.php'; // TODO: cambiar ruta relativa por absoluta
+					include Raiz.'\views\BorrarRegistro.php'; // TODO: cambiar ruta relativa por absoluta
 				}
 			} else {
 				// TODO: mostrar formulario para insertar id pasandole la id incorrecta
@@ -31,6 +30,8 @@ class controlador {
 		} else {
 			// TODO: hacer formulario para insertar una id
 		}
+		
+		
 	}
 	function InsertaEnvios($datos) {
 		$insertEnvio = $this->modelo->InsertaEnvios ( $datos );

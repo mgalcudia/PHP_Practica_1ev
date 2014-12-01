@@ -193,6 +193,28 @@ class modelo{
 		
 		
 	}
+	/**
+	 * Función para comprobar si existe una id de un pedido
+	 * @param numerico $id
+	 * @return boolean
+	 */
+	function ExisteId($id){
+		
+		$consulta="select count(*) as total from envios where idenvios=".$id;
+		$resultado= $this->bd->Consulta($consulta);
+		$numero= $this->bd->LeeRegistro($resultado);
+		
+		if($numero['total']){
+			
+			$existe= true;
+		}
+		else{
+			$existe=false;
+		}
+		
+		return $existe;
+			
+	}
 	
 	
 	

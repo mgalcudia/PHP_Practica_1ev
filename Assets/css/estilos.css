@@ -1,0 +1,16 @@
+.titulo{
+	margin:0 auto;
+	color: blue;
+	font-size: 2em;
+	text-align: center;
+}
+
+.menu{
+	position: relative;
+	float:left;
+}
+
+.menu ul{
+	list-style:none;
+}
+

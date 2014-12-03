@@ -64,12 +64,9 @@ class controlador {
 		
 		
 		if (isset ( $listaEnvios )) {
-			function html(){
-			ob_start();
+					
 			include Raiz . '\views\VistaListar.php';
-			$html = ob_get_clean();
-			return $html;
-			}
+			
 			
 		} else {
 		
@@ -82,7 +79,8 @@ class controlador {
 		
 	}
 	function Inicio() {
-		include Raiz . '\views\Inicio.php';
+	
+		include Raiz.'/views/VistaInicio.php';
 	}
 	
 	

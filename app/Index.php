@@ -5,7 +5,10 @@ define("Raiz",__DIR__);
 
 //Carpeta del controlador
 define("control", Raiz."\controllers");
-
+//insertamos la cabecera
+include Raiz.'\views\Cabecera.php';
+include Raiz.'\views\Inicio.php';
+//ahora incluimos en cuerpo según nos devuelve $mvc
 include control."\controlador.php";
 
 //instanciar al controlador
@@ -39,7 +42,7 @@ else{
 
 
 
-	include Raiz.'\views\vista.php';
+	include Raiz.'\views\pie.php';
 	
 	
 

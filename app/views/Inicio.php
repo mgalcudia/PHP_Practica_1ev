@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Insert title here</title>
-</head>
-<body>
-
+<div class="menu">
 	<ul>
 		<li><a href="index.php">Principal</a></li>
 		<li><a href="index.php?action=buscar">Busqueda de envios</a></li>
@@ -17,7 +10,4 @@
 		<li><a href="index.php?action=listar">Listar envios</a></li>
 
 	</ul>
-
-
-</body>
-</html>
+</div>

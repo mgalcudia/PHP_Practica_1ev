@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Insert title here</title>
-</head>
-<body>
+<div="cambiarid">
 <p>Cambiar id:  <?=$_GET['id'] ?></p>
 <form action="index.php" method="get" >
 <input type="text" name="id"/>
@@ -16,8 +10,4 @@
 
 
 </form>
-	
-    
-
-</body>
-</html>
+</div>

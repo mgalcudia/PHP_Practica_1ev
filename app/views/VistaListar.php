@@ -1,16 +1,9 @@
-<!-- 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Insert title here</title>
-</head>
-<body>
- -->
- <?php
 
-	echo	"<table border='1'>";
-	echo	"<tr>
+ 
+<div class="contenedor">
+<span class="titulo">Listar envios</span>
+			<table border='1'>
+			<tr>
 			<td>Número de envio</td>
 			<td>Destinatario</td>			
 			<td>Teléfono</td>
@@ -26,10 +19,10 @@
 			<td>Borrar</td>
 			<td>Modificar</td>
 			
-		</tr>";
+		</tr>
 		
 
-
+<?php
 
 foreach ( $listaEnvios as $clave => $valor ) {
 	echo "<tr>";
@@ -61,7 +54,4 @@ if($i==1 ||$i==$paginasTotales ||  $i==$paginaActual||($i > $paginaActual - 2 &&
 }
 echo '<a href=index.php?action=listar&pagina='.$paginasTotales.'>Ultima  </a>';
 	?>
-<!--  
-</body>
-</html>
--->
+</div>

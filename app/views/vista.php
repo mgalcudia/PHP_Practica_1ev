@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Insert title here</title>
-</head>
-<body>
+<?php 
+include Raiz.'\views\Cabecera.php';
+echo $html;
 
+include Raiz.'\views\pie.php';
 
-</body>
-</html>
+?>

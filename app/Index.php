@@ -14,6 +14,7 @@ $mvc= new controlador();
 if (isset($_GET['action']) && $_GET['action']=='listar'){
 	
 	$mvc->ListarEnvios();
+	
 }elseif (isset($_GET['action']) && $_GET['action']=='buscar'){
 	
 	$mvc->BusquedaEnvios($datosBusqueda);
@@ -35,6 +36,12 @@ else{
 	
 	$mvc->Inicio();
 }
+
+
+
+	include Raiz.'\views\vista.php';
+	
+	
 
 
 

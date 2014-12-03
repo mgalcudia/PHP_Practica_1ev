@@ -12,6 +12,7 @@ class controlador {
 	function ModificaEnvios($datosmodificado, $id) {
 		$modificaEnvio = $this->modelo->ModificaEnvio ( $datosmodificado, $id );
 	}
+	
 	function EliminaEnvios($id) {
 
 		if (isset($_GET['id'])) {
@@ -19,12 +20,14 @@ class controlador {
 			if ($eliminar) {
 				if (isset($_GET['confirmar']) && $_GET['confirmar'] == "si") {
 					$this->modelo->EliminaEnvios ( $_GET['id'] );
+					
 				} else if (isset($_GET['confirmar']) && $_GET['confirmar'] == "no") {
-					// TODO: mostrar formulario para insertar id
+					  header('Location:index.php?action=listar');// TODO: mostrar formulario para insertar id
 				} else {
-					include Raiz.'\views\BorrarRegistro.php'; // TODO: cambiar ruta relativa por absoluta
+					include Raiz.'\views\BorrarRegistro.php'; 
 				}
 			} else {
+				include Raiz.'\views\CambiarID.php';
 				// TODO: mostrar formulario para insertar id pasandole la id incorrecta
 			}
 		} else {
@@ -61,9 +64,12 @@ class controlador {
 		
 		
 		if (isset ( $listaEnvios )) {
-			
+			function html(){
+			ob_start();
 			include Raiz . '\views\VistaListar.php';
-			
+			$html = ob_get_clean();
+			return $html;
+			}
 			
 		} else {
 		

@@ -5,31 +5,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="" method="post">
+	<form action="" method="post">
 
-<p>
-Código de envios: <input type="text" name="id" value=<?=Valorpost('id')?>>
-</p>
+		<p>
+			Código de envios: <input type="text" name="id" value="" />
+		</p>
 
+		<p>
+			Destinatario : <input type="text" name="destinatario" value="" />
+		</p>
+		<p>
+			Población: <input type="text" name="poblacion" value="" />
+		</p>
+		<p>
+			Código Postal: <input type="text" name="cod_postal" value="" />
+		</p>
+		<p>
+			Provincia: <input type="text" name="provincia" value="" />
+		</p>
+		<p>
+			Correo electronico: <input type="text" name="email" value="" />
+		</p>
+		<p>
+			Fecha de creacion: <input type="text" name="fec_creacion" value="" />
+		</p>
+		<p>
+			Fecha de entrega: <input type="text" name="fec_entrega" value="" />
+		</p>
+		<p>
+			Observaciones:
+			<textarea name="observaciones" rows="10" cols="15"></textarea>
+		</p>
 
-
-
-
-</form>
-	
-    
-
+	</form>
 </body>
 </html>
-
-'destinatario' => 'Juaqui',
-		'telefono' => '696969696969',
-		'direccion' => 'direccion propia',
-		'poblacion' => 'Huelva',
-		'cod_postal' => '252525',
-		'provincia' => '21',
-		'email' => 'correo@propio.com',
-		
-		'fec_creacion' => '2014-01-06',
-		'fec_entrega' => '2020-01-06',
-		'observaciones' => 'uno que va y que viene' 

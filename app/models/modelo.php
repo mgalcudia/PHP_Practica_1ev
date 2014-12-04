@@ -194,6 +194,26 @@ class modelo{
 		
 	}
 	/**
+	 * funcion para listar las provincias de forma ordenadas
+	 * @return array
+	 */
+	function ListarProvincias(){
+	
+		$consulta="select nombre from provincias order by id_provincias";
+		$this->bd->Consulta($consulta);
+		$resultado=[];
+		while ($registro= $this->bd->LeeRegistro()){
+			$resultado[]=$registro;
+			
+		}
+	
+		return $resultado;
+	
+	
+	}
+	
+	
+	/**
 	 * Función para comprobar si existe una id de un pedido
 	 * @param numerico $id
 	 * @return boolean
@@ -216,7 +236,7 @@ class modelo{
 			
 	}
 	
-	
+
 	
 	
 	

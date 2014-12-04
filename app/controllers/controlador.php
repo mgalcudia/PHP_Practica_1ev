@@ -9,32 +9,61 @@ class controlador {
 	function BusquedaEnvios($datosBusqueda) {
 		$busquedaEnvios = $this->modelo->BuscarEnvios ( $datosBusqueda );
 	}
-	function ModificaEnvios($datosmodificado, $id) {
-		$modificaEnvio = $this->modelo->ModificaEnvio ( $datosmodificado, $id );
-	}
 	
-	function EliminaEnvios($id) {
-
-		if (isset($_GET['id'])) {
-			$eliminar=$this->modelo->ExisteId($_GET['id']);//función para comprobar si existe una id
-			if ($eliminar) {
-				if (isset($_GET['confirmar']) && $_GET['confirmar'] == "si") {
-					$this->modelo->EliminaEnvios ( $_GET['id'] );
-					
-				} else if (isset($_GET['confirmar']) && $_GET['confirmar'] == "no") {
-					  header('Location:index.php?action=listar');// TODO: mostrar formulario para insertar id
+	/**
+	 * @todo ESTA FUNCION NO ESTA TERMINADA COMPROBAR LO ESCRITO,FORMULARIO.PHP Y $provincias = $this->modelo->ListarProvincias ();
+	 * @param unknown $datosmodificado
+	 * @param unknown $id
+	 */
+	function ModificaEnvios($datosmodificado, $id) {
+		$provincias = $this->modelo->ListarProvincias ();
+		if (isset ( $_GET ['id'] )) {
+			$existeId = $this->modelo->ExisteId ( $_GET ['id'] );
+			if ($existeId) {
+				if (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "si") {
+					if ($_POST) {
+						$this->modelo->ModificaEnvio ( $this->CreaArrayDatos (), $_GET ['id'] );
+					} else {
+						include Raiz . '\views\Formulario.php';
+						// no hay post
+					}
+				} elseif (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "no") {
+					header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
 				} else {
-					include Raiz.'\views\BorrarRegistro.php'; 
+					// formulario para no se que #########
 				}
 			} else {
-				include Raiz.'\views\CambiarID.php';
+				// formulario para cambiar la id
+			}
+		} else {
+			include Raiz . '\views\Formulario.php';
+		}
+		$modificaEnvio = $this->modelo->ModificaEnvio ( $datosmodificado, $id );
+	}
+	/**
+	 * funcion para eliminar envios, recoge la id por get
+	 * 
+	 * @param
+	 *        	id de envios $id
+	 */
+	function EliminaEnvios($id) {
+		if (isset ( $_GET ['id'] )) {
+			$eliminar = $this->modelo->ExisteId ( $_GET ['id'] ); // función para comprobar si existe una id
+			if ($eliminar) {
+				if (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "si") {
+					$this->modelo->EliminaEnvios ( $_GET ['id'] );
+				} elseif (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "no") {
+					header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
+				} else {
+					include Raiz . '\views\BorrarRegistro.php';
+				}
+			} else {
+				include Raiz . '\views\CambiarID.php';
 				// TODO: mostrar formulario para insertar id pasandole la id incorrecta
 			}
 		} else {
-			// TODO: hacer formulario para insertar una id
+			header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
 		}
-		
-		
 	}
 	function InsertaEnvios($datos) {
 		$insertEnvio = $this->modelo->InsertaEnvios ( $datos );
@@ -44,48 +73,114 @@ class controlador {
 		}
 		$anotaRecepcion = $this->modelo->AnotaRecepcion ( $idRecepcion, $observaciones );
 	}
+	/**
+	 * funcion para listar los envios, tiene paginacion
+	 */
 	function ListarEnvios() {
-		
 		$listaEnvios = $this->modelo->ListaEnvios ();
-		$totalEnvios= $this->modelo->TotalEnvios();
-		$paginasTotales= $this->modelo->PaginasTotales($totalEnvios);
-		$paginaActual=$this->modelo->PaginaActual($totalEnvios);
-		
-		/*
-		if($totalEnvios){
-		echo "<pre>";
-		print_r($paginaActual);
-		echo "</pre>";
-		}
-		else{
-			echo 'NULO';
-		}
-		*/
-		
+		$totalEnvios = $this->modelo->TotalEnvios ();
+		$paginasTotales = $this->modelo->PaginasTotales ( $totalEnvios );
+		$paginaActual = $this->modelo->PaginaActual ( $totalEnvios );
 		
 		if (isset ( $listaEnvios )) {
-					
+			
 			include Raiz . '\views\VistaListar.php';
-			
-			
 		} else {
-		
+			
 			header ( 'Status: 404 Not Found' );
 			echo '<html><body><h1>Error 404: No existe  
 						</p></body></html>';
-			
 		}
-		
-		
 	}
+	
+	/**
+	 * funcion para la vista inicio
+	 */
 	function Inicio() {
-	
-		include Raiz.'/views/VistaInicio.php';
+		include Raiz . '/views/VistaInicio.php';
 	}
 	
+	/**
+	 * funcion que recoge el valor post por defecto
+	 * 
+	 * @param string $nombreCampo        	
+	 * @param string $valorPorDefecto        	
+	 * @return string|string
+	 */
+	function ValorPost($nombreCampo, $valorPorDefecto = '') {
+		if (isset ( $_POST [$nombreCampo] ))
+			return $_POST [$nombreCampo];
+		else
+			return $valorPorDefecto;
+	}
+	/**
+	 * funcion que recoge el valor get por defecto
+	 * 
+	 * @param string $nombreCampo        	
+	 * @param string $valorPorDefecto        	
+	 * @return string|string
+	 */
+	function ValorGet($nombreCampo, $valorPorDefecto = '') {
+		if (isset ( $_GET [$nombreCampo] ))
+			return $_GET [$nombreCampo];
+		else
+			return $valorPorDefecto;
+	}
 	
-
+	/**
+	 * crea un array con los valores recogidos por post
+	 * 
+	 * @return array
+	 */
+	function CreaArrayDatos() {
+		$datos = array (
+				'destinatario' => $this->ValorPost ( 'destinatario' ),
+				'telefono' => $this->ValorPost ( 'telefono' ),
+				'direccion' => $this->ValorPost ( 'direccion' ),
+				'poblacion' => $this->ValorPost ( 'poblacion' ),
+				'cod_postal' => $this->ValorPost ( 'cod_postal' ),
+				'provincia' => $this->ValorPost ( 'provincia' ),
+				'email' => $this->ValorPost ( 'email' ),
+				'estado' => $this->ValorPost ( 'estado' ),
+				'observaciones' => $this->ValorPost ( 'observaciones' ) 
+		);
+		return $datos;
+	}
+	/**
+	 * funcion para crear el menu desplegable de provincias
+	 *
+	 * @param unknown $name        	
+	 * @param unknown $opciones        	
+	 * @param number $valorPorDefecto        	
+	 * @return string
+	 */
+	function CreaSelect($name, $opciones, $valorPorDefecto = 0) {
+		$html = '';
+		
+		$html .= '<select name="' . $name . '">';
+		
+		foreach ( $opciones as $clave => $valor ) {
+			$html .= '<option value="' . $clave . '" ';
+			
+			$html .= ($clave == $valorPorDefecto) ? ' selected="selected">' . $valor : ' >' . $valor;
+			$html .= '</option>';
+		}
+		$html .= '</select>';
+		return $html;
+	}
 }
+
+/*
+ if($totalEnvios){
+echo "<pre>";
+print_r($paginaActual);
+echo "</pre>";
+}
+else{
+echo 'NULO';
+}
+*/
+
 
 
 /*

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class modelo | My API documentation</title>
+
+	<link rel="stylesheet" href="resources/style.css?331665766">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-controlador.html">controlador</a></li>
+				<li><a href="class-Db.html">Db</a></li>
+				<li class="active"><a href="class-modelo.html">modelo</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class modelo</h1>
+
+
+	<div class="description">
+	
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+		<b>Located at</b> <a href="source-class-modelo.html#6-237" title="Go to source code">app/models/modelo.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-modelo.html#8-10" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="TotalEnvios" id="_TotalEnvios">
+
+		<td class="attributes"><code>
+			 public 
+
+			number
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_TotalEnvios">#</a>
+		<code><a href="source-class-modelo.html#11-23" title="Go to source code">TotalEnvios</a>( )</code>
+
+		<div class="description short">
+			<p>Función para averiguar el total de envios en la tabla envios</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Función para averiguar el total de envios en la tabla envios</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>number</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="PaginasTotales" id="_PaginasTotales">
+
+		<td class="attributes"><code>
+			 public 
+
+			number
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_PaginasTotales">#</a>
+		<code><a href="source-class-modelo.html#25-37" title="Go to source code">PaginasTotales</a>( <span>number <var>$totalEnvios</var></span> )</code>
+
+		<div class="description short">
+			<p>Número totales de páginas en la paginacion</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Número totales de páginas en la paginacion</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$totalEnvios</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>number</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="PaginaActual" id="_PaginaActual">
+
+		<td class="attributes"><code>
+			 public 
+
+			Ambigous
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_PaginaActual">#</a>
+		<code><a href="source-class-modelo.html#39-61" title="Go to source code">PaginaActual</a>( <span>number <var>$totalEnvios</var></span> )</code>
+
+		<div class="description short">
+			<p>Página en la que nos encontramos ahora mismo</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Página en la que nos encontramos ahora mismo</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$totalEnvios</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Ambigous</code><br>&lt;number, valor get de la página>
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ListaEnvios" id="_ListaEnvios">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ListaEnvios">#</a>
+		<code><a href="source-class-modelo.html#63-80" title="Go to source code">ListaEnvios</a>( )</code>
+
+		<div class="description short">
+			<p>Listar los envios, los introduce en un array asociativo</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Listar los envios, los introduce en un array asociativo</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="InsertaEnvios" id="_InsertaEnvios">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_InsertaEnvios">#</a>
+		<code><a href="source-class-modelo.html#82-100" title="Go to source code">InsertaEnvios</a>( <span>array <var>$datos</var></span> )</code>
+
+		<div class="description short">
+			<p>Funcion para intsertar envios en la tabla, recibe un array con los valores a insertar</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Funcion para intsertar envios en la tabla, recibe un array con los valores a insertar</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$datos</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ModificaEnvio" id="_ModificaEnvio">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ModificaEnvio">#</a>
+		<code><a href="source-class-modelo.html#102-122" title="Go to source code">ModificaEnvio</a>( <span>array <var>$datos</var></span>, <span>id <var>$id</var></span> )</code>
+
+		<div class="description short">
+			<p>Función para modificar envios en la tabla</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Función para modificar envios en la tabla</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$datos</var></dt>
+					<dd>
+</dd>
+					<dt><var>$id</var></dt>
+					<dd>la tabla $id
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="EliminaEnvios" id="_EliminaEnvios">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_EliminaEnvios">#</a>
+		<code><a href="source-class-modelo.html#124-136" title="Go to source code">EliminaEnvios</a>( <span>id <var>$id</var></span> )</code>
+
+		<div class="description short">
+			<p>Función para eliminar envios de la tabla</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Función para eliminar envios de la tabla</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd>la tabla $id
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="AnotaRecepcion" id="_AnotaRecepcion">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_AnotaRecepcion">#</a>
+		<code><a href="source-class-modelo.html#138-156" title="Go to source code">AnotaRecepcion</a>( <span>id <var>$id</var></span>, <span>array <var>$observaciones</var></span> )</code>
+
+		<div class="description short">
+			<p>Función para anotar una recepcion</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Función para anotar una recepcion</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd>la tabla $id
+</dd>
+					<dt><var>$observaciones</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="BuscarEnvios" id="_BuscarEnvios">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_BuscarEnvios">#</a>
+		<code><a href="source-class-modelo.html#158-185" title="Go to source code">BuscarEnvios</a>( <span>array <var>$datos</var></span> )</code>
+
+		<div class="description short">
+			<p>Función para buscar envios</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Función para buscar envios</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$datos</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>asociativo con los datos del envio
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="MuestraEnvio" id="_MuestraEnvio">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_MuestraEnvio">#</a>
+		<code><a href="source-class-modelo.html#187-200" title="Go to source code">MuestraEnvio</a>( <span>mixed <var>$datos</var></span> )</code>
+
+		<div class="description short">
+			
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ListarProvincias" id="_ListarProvincias">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ListarProvincias">#</a>
+		<code><a href="source-class-modelo.html#202-215" title="Go to source code">ListarProvincias</a>( )</code>
+
+		<div class="description short">
+			<p>funcion para listar las provincias de forma ordenadas</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>funcion para listar las provincias de forma ordenadas</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ExisteId" id="_ExisteId">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ExisteId">#</a>
+		<code><a href="source-class-modelo.html#217-236" title="Go to source code">ExisteId</a>( <span>numerico <var>$id</var></span> )</code>
+
+		<div class="description short">
+			<p>Función para comprobar si existe una id de un pedido</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Función para comprobar si existe una id de un pedido</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		My API documentation API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?2413158688"></script>
+</body>
+</html>

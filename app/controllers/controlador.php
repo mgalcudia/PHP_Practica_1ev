@@ -7,11 +7,14 @@ class controlador {
 		$this->modelo = new modelo ();
 	}
 	function BusquedaEnvios($datosBusqueda) {
-		$busquedaEnvios = $this->modelo->BuscarEnvios ( $datosBusqueda );
+		if (isset($_GET['confirmar'])&&$_GET['confirmar']=="si"){
+			$busquedaEnvios = $this->modelo->BuscarEnvios ( $datosBusqueda );
+		}
+		
 	}
 	
 	/**
-	 * @todo ESTA FUNCION NO ESTA TERMINADA COMPROBAR LO ESCRITO,FORMULARIO.PHP Y $provincias = $this->modelo->ListarProvincias ();
+	 * funcion del controlador para modificar los envios 
 	 * @param unknown $datosmodificado
 	 * @param unknown $id
 	 */
@@ -20,22 +23,25 @@ class controlador {
 		
 		if (isset ( $_GET ['id'] )) {
 			$existeId = $this->modelo->ExisteId ( $_GET ['id'] );
-			if ($existeId) {
-			
-									
+			if ($existeId) {		
 				
 				if (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "si") {
 					if ($_POST) {//si hay post incluye los datos						
 						$datos=$this->CreaArrayDatos ();
-						$this->modelo->ModificaEnvio ($datos , $_GET ['id'] );
-						header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
-					} else {//sino existe mostramos formulario
+						$this->modelo->ModificaEnvio ($datos , $_GET ['id'] );						
+						header ( 'Location:index.php?action=listar' );
+					} else {
+						
 						$campos=$this->modelo->MuestraEnvio($_GET ['id']);
+						if(is_array($campos))
+						{
+							$envio = $campos[0];	
+						}
 						include Raiz . '\views\Formulario.php';
 						// no hay post
 					}
 				} elseif (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "no") {
-					header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
+					header ( 'Location:index.php?action=listar' ); 
 				} else {
 					include Raiz.'\views\ModificarRegistro.php';
 				}
@@ -44,10 +50,9 @@ class controlador {
 				// formulario para cambiar la id  CambiarIdModificar.php
 			}
 		} else {
-			include Raiz . '\views\Formulario.php';
-			//header ( 'Location:index.php?action=listar' );
+			include Raiz . '\views\Formulario.php';			
 		}
-		//$modificaEnvio = $this->modelo->ModificaEnvio ( $datosmodificado, $id );
+		
 	}
 	/**
 	 * funcion para eliminar envios, recoge la id por get

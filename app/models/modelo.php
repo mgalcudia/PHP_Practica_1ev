@@ -176,7 +176,6 @@ class modelo {
 		$resultado = [ ];
 		while ( $registro = $this->bd->LeeRegistro () ) {
 			$resultado [] = $registro;
-	
 					
 		}
 
@@ -198,6 +197,7 @@ class modelo {
 		
 		
 	}
+	
 	
 	/**
 	 * funcion para listar las provincias de forma ordenadas

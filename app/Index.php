@@ -23,7 +23,15 @@ if (isset($_GET['action']) && $_GET['action']=='listar'){
 	$mvc->BusquedaEnvios($datosBusqueda);
 }elseif (isset($_GET['action']) && $_GET['action']=='modificar'){
 	
-	$mvc->ModificaEnvios($datosmodificado, $_GET['id']);
+	if(isset($_GET['id'])){
+		$mvc->ModificaEnvios($_GET['id']);
+	}
+	else{
+		$mvc->ListarEnvios();
+		
+	}
+
+	
 }elseif (isset($_GET['action']) && $_GET['action']=='eliminar' ){
 	
 	$mvc->EliminaEnvios($_GET['id']);

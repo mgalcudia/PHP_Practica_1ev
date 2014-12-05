@@ -14,3 +14,15 @@
 	list-style:none;
 }
 
+.formulario{
+	
+	position: relative;
+	text-align: center;
+	
+}
+
+.izquierda{
+	position: relative;
+	float:left;
+	
+}

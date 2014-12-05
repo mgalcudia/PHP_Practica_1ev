@@ -32,10 +32,10 @@ foreach ( $listaEnvios as $clave => $valor ) {
 		echo "</td>";		
 	}	
 	echo "<td>";
-	echo  '<a href=index.php?action=eliminar&id='.$valor['idenvios'] .'>Borrar</a>'; ;
+	echo  '<a href=index.php?action=eliminar&id='.$valor['idenvios'] .'>Borrar</a>';
 	echo "</td>";
 	echo "<td>";
-	echo"modificar";
+	echo  '<a href=index.php?action=modificar&id='.$valor['idenvios'] .'>Modificar</a>';
 	echo "</td>";
 	echo "</tr>";
 }

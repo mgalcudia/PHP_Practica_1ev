@@ -15,30 +15,39 @@ class controlador {
 	 * @param unknown $datosmodificado
 	 * @param unknown $id
 	 */
-	function ModificaEnvios($datosmodificado, $id) {
+	function ModificaEnvios($id) {
 		$provincias = $this->modelo->ListarProvincias ();
+		
 		if (isset ( $_GET ['id'] )) {
 			$existeId = $this->modelo->ExisteId ( $_GET ['id'] );
 			if ($existeId) {
+			
+									
+				
 				if (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "si") {
-					if ($_POST) {
-						$this->modelo->ModificaEnvio ( $this->CreaArrayDatos (), $_GET ['id'] );
-					} else {
+					if ($_POST) {//si hay post incluye los datos						
+						$datos=$this->CreaArrayDatos ();
+						$this->modelo->ModificaEnvio ($datos , $_GET ['id'] );
+						header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
+					} else {//sino existe mostramos formulario
+						$campos=$this->modelo->MuestraEnvio($_GET ['id']);
 						include Raiz . '\views\Formulario.php';
 						// no hay post
 					}
 				} elseif (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "no") {
 					header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
 				} else {
-					// formulario para no se que #########
+					include Raiz.'\views\ModificarRegistro.php';
 				}
 			} else {
-				// formulario para cambiar la id
+				include Raiz.'\views\CambiarIdModificar.php';
+				// formulario para cambiar la id  CambiarIdModificar.php
 			}
 		} else {
 			include Raiz . '\views\Formulario.php';
+			//header ( 'Location:index.php?action=listar' );
 		}
-		$modificaEnvio = $this->modelo->ModificaEnvio ( $datosmodificado, $id );
+		//$modificaEnvio = $this->modelo->ModificaEnvio ( $datosmodificado, $id );
 	}
 	/**
 	 * funcion para eliminar envios, recoge la id por get
@@ -81,6 +90,7 @@ class controlador {
 		$totalEnvios = $this->modelo->TotalEnvios ();
 		$paginasTotales = $this->modelo->PaginasTotales ( $totalEnvios );
 		$paginaActual = $this->modelo->PaginaActual ( $totalEnvios );
+
 		
 		if (isset ( $listaEnvios )) {
 			
@@ -154,7 +164,7 @@ class controlador {
 	 * @param number $valorPorDefecto        	
 	 * @return string
 	 */
-	function CreaSelect($name, $opciones, $valorPorDefecto = 0) {
+	function CreaSelect($name, $opciones, $valorPorDefecto = 00) {
 		$html = '';
 		
 		$html .= '<select name="' . $name . '">';
@@ -162,12 +172,14 @@ class controlador {
 		foreach ( $opciones as $clave => $valor ) {
 			$html .= '<option value="' . $clave . '" ';
 			
-			$html .= ($clave == $valorPorDefecto) ? ' selected="selected">' . $valor : ' >' . $valor;
+			$html .= ($clave == $valorPorDefecto) ? ' selected="selected">' . $valor : ' >' . $valor."";
 			$html .= '</option>';
 		}
 		$html .= '</select>';
 		return $html;
 	}
+	
+
 }
 
 /*

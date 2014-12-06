@@ -19,8 +19,10 @@ if (isset($_GET['action']) && $_GET['action']=='listar'){
 	$mvc->ListarEnvios();
 	
 }elseif (isset($_GET['action']) && $_GET['action']=='buscar'){
+
+		$mvc->BusquedaEnvios();
+
 	
-	$mvc->BusquedaEnvios($datosBusqueda);
 }elseif (isset($_GET['action']) && $_GET['action']=='modificar'){
 	
 	if(isset($_GET['id'])){

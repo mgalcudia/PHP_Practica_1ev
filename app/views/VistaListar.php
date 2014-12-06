@@ -42,6 +42,7 @@ foreach ( $listaEnvios as $clave => $valor ) {
  
 echo"</table>";	
 
+if(isset($paginasTotales)){
 	echo '<a href=index.php?action=listar&pagina=0>Primera  </a>';
 	for($i=0;$i<$paginasTotales;$i++){
 	
@@ -53,5 +54,6 @@ if($i==1 ||$i==$paginasTotales ||  $i==$paginaActual||($i > $paginaActual - 2 &&
 
 }
 echo '<a href=index.php?action=listar&pagina='.$paginasTotales.'>Ultima  </a>';
+}
 	?>
 </div>

@@ -1,9 +1,9 @@
 <div class="formulario">
-<form action="?action=modificar" method="post">
+
 <div class="izquierda">
 
 	<p>
-		Código de envios: <input type="text" name="id" readonly="readonly" value="<?= $this->ValorGet('id')?>" />
+		Código de envios: <input type="text" name="id" readonly="readonly" value="<?= $envio['idenvios']?>" />
 	</p>
 
 	<p>
@@ -39,5 +39,4 @@
 	</p>
 	<p><input type="submit" value="Modificar"> </p>
 </div>
-</form>
 </div>

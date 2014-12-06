@@ -166,9 +166,9 @@ class modelo {
 		$valores = [ ];
 		foreach ( $datos as $campos => $valores ) {
 			
-			$valoresUnidos [] = "'".$campos ."'  like " . "'" . $valores . "'";
+			$valoresUnidos [] = $campos ." like " . "'" . $valores . "'";
 		}
-		$camposUnidos = implode ( " and ", $valoresUnidos );
+		$camposUnidos = implode ( " or ", $valoresUnidos );
 		
 		$consulta = "select * from envios where " . $camposUnidos;
 
@@ -178,11 +178,16 @@ class modelo {
 			$resultado [] = $registro;
 					
 		}
-
+		
+		//return $consulta;
 		
 		return $resultado;
 	}
-	
+	/**
+	 * Muestra los datos de un envio concreto
+	 * @param id_envios $datos
+	 * @return array
+	 */
 	function MuestraEnvio($datos){
 		
 		$consulta= "SELECT * FROM envios WHERE idenvios =".$datos;
@@ -193,11 +198,26 @@ class modelo {
 			$resultado [] = $registro;				
 		}
 
+		return $resultado;		
+	}
+	
+	/**
+	 * Lista todos los Idenvios existentes en la tabla
+	 * @return Array
+	 */
+	function ListaID(){
+		
+		$consulta= "SELECT idenvios FROM envios";
+		$this->bd->Consulta ( $consulta );
+		
+		while ( $registro = $this->bd->LeeRegistro()) {
+			$resultado [] = $registro;
+		}
+		
 		return $resultado;
 		
 		
 	}
-	
 	
 	/**
 	 * funcion para listar las provincias de forma ordenadas

@@ -6,11 +6,27 @@ class controlador {
 	function __construct() {
 		$this->modelo = new modelo ();
 	}
-	function BusquedaEnvios($datosBusqueda) {
-		if (isset($_GET['confirmar'])&&$_GET['confirmar']=="si"){
-			$busquedaEnvios = $this->modelo->BuscarEnvios ( $datosBusqueda );
+	function BusquedaEnvios() {
+		$provincias = $this->modelo->ListarProvincias ();
+		$id = $this->modelo->ListaID ();
+		foreach ( $id as $valor ) {
+			$idenvios [] = $valor ['idenvios'];
 		}
 		
+		if ($_POST) {
+			// $datos=$this->CreaArrayDatos();
+			$listaEnvios = $this->modelo->ListaEnvios ();
+
+			$listaEnvios = $this->modelo->BuscarEnvios ( $_POST );
+
+			
+			/*
+			 * if (is_array($busquedaEnvios)){ $envio= $busquedaEnvios[0]; include Raiz.'\views\MuestraConsulta.php'; }
+			 */
+			include Raiz . '\views\VistaListar.php';
+		} else {
+			include Raiz . '\views\VistaBuscar.php';
+		}
 	}
 	
 	/**
@@ -19,20 +35,18 @@ class controlador {
 	 * @param unknown $id
 	 */
 	function ModificaEnvios($id) {
-		$provincias = $this->modelo->ListarProvincias ();
-		
+		$provincias = $this->modelo->ListarProvincias ();	
 		if (isset ( $_GET ['id'] )) {
 			$existeId = $this->modelo->ExisteId ( $_GET ['id'] );
-			if ($existeId) {		
-				
+			if ($existeId) {					
 				if (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "si") {
 					if ($_POST) {//si hay post incluye los datos						
 						$datos=$this->CreaArrayDatos ();
 						$this->modelo->ModificaEnvio ($datos , $_GET ['id'] );						
 						header ( 'Location:index.php?action=listar' );
-					} else {
-						
+					} else {						
 						$campos=$this->modelo->MuestraEnvio($_GET ['id']);
+						
 						if(is_array($campos))
 						{
 							$envio = $campos[0];	
@@ -50,7 +64,7 @@ class controlador {
 				// formulario para cambiar la id  CambiarIdModificar.php
 			}
 		} else {
-			include Raiz . '\views\Formulario.php';			
+			include Raiz .'\views\Formulario.php';			
 		}
 		
 	}
@@ -76,7 +90,7 @@ class controlador {
 				// TODO: mostrar formulario para insertar id pasandole la id incorrecta
 			}
 		} else {
-			header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
+			header ( 'Location:index.php?action=listar' ); //  mostrar los listados
 		}
 	}
 	function InsertaEnvios($datos) {
@@ -85,7 +99,7 @@ class controlador {
 	function AnotaRecepcion($idRecepcion, $observaciones) {
 		if (isset ( $anotaRecepcion )) {
 		}
-		$anotaRecepcion = $this->modelo->AnotaRecepcion ( $idRecepcion, $observaciones );
+		$anotaRecepcion = $this->modelo->AnotaRecepcion( $idRecepcion, $observaciones );
 	}
 	/**
 	 * funcion para listar los envios, tiene paginacion
@@ -122,11 +136,13 @@ class controlador {
 	 * @param string $valorPorDefecto        	
 	 * @return string|string
 	 */
-	function ValorPost($nombreCampo, $valorPorDefecto = '') {
-		if (isset ( $_POST [$nombreCampo] ))
+	function ValorPost($nombreCampo, $valorPorDefecto ='') {
+		if (isset ( $_POST [$nombreCampo] ))			
 			return $_POST [$nombreCampo];
+		
 		else
 			return $valorPorDefecto;
+		
 	}
 	/**
 	 * funcion que recoge el valor get por defecto
@@ -149,17 +165,16 @@ class controlador {
 	 */
 	function CreaArrayDatos() {
 		$datos = array (
-				'destinatario' => $this->ValorPost ( 'destinatario' ),
-				'telefono' => $this->ValorPost ( 'telefono' ),
-				'direccion' => $this->ValorPost ( 'direccion' ),
-				'poblacion' => $this->ValorPost ( 'poblacion' ),
-				'cod_postal' => $this->ValorPost ( 'cod_postal' ),
-				'provincia' => $this->ValorPost ( 'provincia' ),
-				'email' => $this->ValorPost ( 'email' ),
-				'estado' => $this->ValorPost ( 'estado' ),
-				'observaciones' => $this->ValorPost ( 'observaciones' ) 
+				'destinatario' =>ValorPost ( 'destinatario' ),
+				'telefono' =>ValorPost ( 'telefono' ),
+				'direccion' =>ValorPost ( 'direccion' ),
+				'poblacion' => ValorPost ( 'poblacion' ),
+				'cod_postal' =>ValorPost ( 'cod_postal' ),
+				'provincia' =>ValorPost ( 'provincia' ),
+				'email' =>ValorPost ( 'email' ),
+				'estado' =>ValorPost ( 'estado' ),
+				'observaciones' =>ValorPost ( 'observaciones' ) 
 		);
-		return $datos;
 	}
 	/**
 	 * funcion para crear el menu desplegable de provincias
@@ -169,7 +184,8 @@ class controlador {
 	 * @param number $valorPorDefecto        	
 	 * @return string
 	 */
-	function CreaSelect($name, $opciones, $valorPorDefecto = 00) {
+	function CreaSelect($name, $opciones, $valorPorDefecto=0) {
+
 		$html = '';
 		
 		$html .= '<select name="' . $name . '">';
@@ -184,9 +200,33 @@ class controlador {
 		return $html;
 	}
 	
-
+	function CreaSelectID($name, $opciones, $valorPorDefecto=0) {
+	
+		$html = '';
+	
+		$html .= '<select name="' . $name . '">';
+	
+		foreach ( $opciones as $clave => $valor ) {
+			$html .= '<option value="' . $valor . '" ';
+				
+			$html .= ($clave == $valorPorDefecto) ? ' selected="selected">' . $valor : ' >' . $valor."";
+			$html .= '</option>';
+		}
+		$html .= '</select>';
+		return $html;
+	}
+	
+	
+	
+	
+function pev($motrar){
+	
+	echo "<pre>";
+	print_r($motrar);
+	echo "</pre>";
 }
 
+}
 /*
  if($totalEnvios){
 echo "<pre>";

@@ -61,7 +61,7 @@ class modelo {
 	}
 	
 	/**
-	 * Listar los envios, los introduce en un array asociativo
+	 * Listar los envios para paginacion, los introduce en un array asociativo
 	 * 
 	 * @return array
 	 */
@@ -77,6 +77,22 @@ class modelo {
 			$resultado [] = $registro;
 		}
 		return $resultado;
+	}
+	
+	/**
+	 * Listar todos los envios
+	 * @return array
+	 */
+	function TodosEnvios(){
+		
+		$consulta = 'SELECT * FROM envios order by fec_creacion desc';
+		$this->bd->Consulta ( $consulta );
+		$resultado = [ ];
+		while ( $registro = $this->bd->LeeRegistro () ) {
+			$resultado [] = $registro;
+		}
+		return $resultado;
+		
 	}
 	
 	/**
@@ -118,7 +134,8 @@ class modelo {
 		
 		$consulta = "update envios set " . $camposIgualados . " where idenvios= " . $id;
 		
-		$this->bd->Consulta ( $consulta );
+		$this->bd->Consulta($consulta );
+		//return $consulta;
 	}
 	
 	/**
@@ -233,6 +250,19 @@ class modelo {
 		}
 		return $resultado;
 	}
+	
+	
+	function ObtenProvincia($id){
+		$consulta= "select nombre from provincias where id_provincias=".$id;
+		$this->bd->Consulta($consulta);
+		while($registro=$this->bd->LeeRegistro()){
+			
+			$resultado['poblacion']=$registro['nombre'];
+		}
+		return $resultado;
+		//return $consulta;
+	}
+	
 	
 	/**
 	 * Función para comprobar si existe una id de un pedido

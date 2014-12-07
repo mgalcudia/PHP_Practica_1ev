@@ -6,43 +6,53 @@ class controlador {
 	function __construct() {
 		$this->modelo = new modelo ();
 	}
+
 	function BusquedaEnvios() {
 		$provincias = $this->modelo->ListarProvincias ();
 		$id = $this->modelo->ListaID ();
-		foreach ( $id as $valor ) {
-			$idenvios [] = $valor ['idenvios'];
+		$titulo = "Buscar envios";
+		$sinDatos = "";
+		if (is_array ( $id )) {
+			foreach ( $id as $valor ) {
+				$idenvios [] = $valor ['idenvios'];
+			}
 		}
 		
-		if ($_POST) {
-			// $datos=$this->CreaArrayDatos();
-			$listaEnvios = $this->modelo->ListaEnvios ();
-
-			$listaEnvios = $this->modelo->BuscarEnvios ( $_POST );
-
+		if ($_POST) {	
+			$listaEnvios = $this->modelo->BuscarEnvios ( $_POST );			
+			if (empty ( $listaEnvios )) {
+				
+				$sinDatos = "No existe ningun envio asociado a esos campos";
+				include Raiz . '\views\VistaBuscar.php';
+			} else {
+				include Raiz . '\views\VistaListar.php';
+			}			
 			
-			/*
-			 * if (is_array($busquedaEnvios)){ $envio= $busquedaEnvios[0]; include Raiz.'\views\MuestraConsulta.php'; }
-			 */
-			include Raiz . '\views\VistaListar.php';
 		} else {
+			
 			include Raiz . '\views\VistaBuscar.php';
 		}
 	}
 	
 	/**
-	 * funcion del controlador para modificar los envios 
-	 * @param unknown $datosmodificado
-	 * @param unknown $id
+	 * funcion del controlador para modificar los envios
+	 * 
+	 * @param unknown $datosmodificado        	
+	 * @param unknown $id        	
 	 */
-	function ModificaEnvios($id) {
-		$provincias = $this->modelo->ListarProvincias ();	
+	function ModificaEnvios() {
+				$provincias = $this->modelo->ListarProvincias ();	
 		if (isset ( $_GET ['id'] )) {
 			$existeId = $this->modelo->ExisteId ( $_GET ['id'] );
 			if ($existeId) {					
 				if (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "si") {
-					if ($_POST) {//si hay post incluye los datos						
-						$datos=$this->CreaArrayDatos ();
-						$this->modelo->ModificaEnvio ($datos , $_GET ['id'] );						
+					if ($_POST) {//si hay post incluye los datos	
+						unset($_POST['id']);
+						$consulta=$this->modelo->ObtenProvincia($_POST['provincia']);
+						
+						$resultado=array_merge($_POST,$consulta);
+
+						$consulta= $this->modelo->ModificaEnvio ($resultado , $_GET ['id'] );											
 						header ( 'Location:index.php?action=listar' );
 					} else {						
 						$campos=$this->modelo->MuestraEnvio($_GET ['id']);
@@ -51,6 +61,7 @@ class controlador {
 						{
 							$envio = $campos[0];	
 						}
+						$titulo="Modificar envios";
 						include Raiz . '\views\Formulario.php';
 						// no hay post
 					}
@@ -63,23 +74,29 @@ class controlador {
 				include Raiz.'\views\CambiarIdModificar.php';
 				// formulario para cambiar la id  CambiarIdModificar.php
 			}
-		} else {
-			include Raiz .'\views\Formulario.php';			
+		} else  {
+			$titulo = "Modificar";
+			$listaEnvios = $this->modelo->TodosEnvios ();
+			// include Raiz .'\views\Formulario.php';
+			include Raiz . '\views\VistaListar.php';
 		}
-		
 	}
 	/**
 	 * funcion para eliminar envios, recoge la id por get
-	 * 
+	 *
 	 * @param
 	 *        	id de envios $id
 	 */
-	function EliminaEnvios($id) {
+	function EliminaEnvios() {
 		if (isset ( $_GET ['id'] )) {
 			$eliminar = $this->modelo->ExisteId ( $_GET ['id'] ); // función para comprobar si existe una id
 			if ($eliminar) {
 				if (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "si") {
 					$this->modelo->EliminaEnvios ( $_GET ['id'] );
+					$titulo = "Eliminar";
+					$listaEnvios = $this->modelo->TodosEnvios ();
+					// include Raiz .'\views\Formulario.php';
+					include Raiz . '\views\VistaListar.php';
 				} elseif (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "no") {
 					header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
 				} else {
@@ -90,16 +107,37 @@ class controlador {
 				// TODO: mostrar formulario para insertar id pasandole la id incorrecta
 			}
 		} else {
-			header ( 'Location:index.php?action=listar' ); //  mostrar los listados
+						$titulo = "Eliminar";
+			$listaEnvios = $this->modelo->TodosEnvios ();
+			// include Raiz .'\views\Formulario.php';
+			include Raiz . '\views\VistaListar.php';
 		}
 	}
-	function InsertaEnvios($datos) {
-		$insertEnvio = $this->modelo->InsertaEnvios ( $datos );
+	
+	function InsertaEnvios() {
+		$provincias = $this->modelo->ListarProvincias ();
+		//$insertEnvio = $this->modelo->InsertaEnvios ( $datos );
+		if($_POST){
+			$consulta=$this->modelo->ObtenProvincia($_POST['provincia']);
+			
+			$resultado=array_merge($_POST,$consulta);
+			//$this->pev($resultado);
+			$this->modelo->InsertaEnvios($resultado);
+			echo "Envio agregado";
+		}else{
+			
+			$titulo="Insertar un envios";
+			include Raiz . '\views\FormularioAgregar.php';
+			
+			
+		}
+		
 	}
+	
 	function AnotaRecepcion($idRecepcion, $observaciones) {
 		if (isset ( $anotaRecepcion )) {
 		}
-		$anotaRecepcion = $this->modelo->AnotaRecepcion( $idRecepcion, $observaciones );
+		$anotaRecepcion = $this->modelo->AnotaRecepcion ( $idRecepcion, $observaciones );
 	}
 	/**
 	 * funcion para listar los envios, tiene paginacion
@@ -109,7 +147,7 @@ class controlador {
 		$totalEnvios = $this->modelo->TotalEnvios ();
 		$paginasTotales = $this->modelo->PaginasTotales ( $totalEnvios );
 		$paginaActual = $this->modelo->PaginaActual ( $totalEnvios );
-
+		$titulo = "Listar envios";
 		
 		if (isset ( $listaEnvios )) {
 			
@@ -130,23 +168,21 @@ class controlador {
 	}
 	
 	/**
-	 * funcion que recoge el valor post por defecto
-	 * 
+	 * funcion que recoge el valor post por defecto	 *
 	 * @param string $nombreCampo        	
 	 * @param string $valorPorDefecto        	
 	 * @return string|string
 	 */
-	function ValorPost($nombreCampo, $valorPorDefecto ='') {
-		if (isset ( $_POST [$nombreCampo] ))			
+	function ValorPost($nombreCampo, $valorPorDefecto = '') {
+		if (isset ( $_POST [$nombreCampo] ))
 			return $_POST [$nombreCampo];
 		
 		else
 			return $valorPorDefecto;
-		
 	}
+	
 	/**
-	 * funcion que recoge el valor get por defecto
-	 * 
+	 * funcion que recoge el valor get por defecto	 *
 	 * @param string $nombreCampo        	
 	 * @param string $valorPorDefecto        	
 	 * @return string|string
@@ -160,20 +196,20 @@ class controlador {
 	
 	/**
 	 * crea un array con los valores recogidos por post
-	 * 
+	 *
 	 * @return array
 	 */
 	function CreaArrayDatos() {
 		$datos = array (
-				'destinatario' =>ValorPost ( 'destinatario' ),
-				'telefono' =>ValorPost ( 'telefono' ),
-				'direccion' =>ValorPost ( 'direccion' ),
+				'destinatario' => ValorPost ( 'destinatario' ),
+				'telefono' => ValorPost ( 'telefono' ),
+				'direccion' => ValorPost ( 'direccion' ),
 				'poblacion' => ValorPost ( 'poblacion' ),
-				'cod_postal' =>ValorPost ( 'cod_postal' ),
-				'provincia' =>ValorPost ( 'provincia' ),
-				'email' =>ValorPost ( 'email' ),
-				'estado' =>ValorPost ( 'estado' ),
-				'observaciones' =>ValorPost ( 'observaciones' ) 
+				'cod_postal' => ValorPost ( 'cod_postal' ),
+				'provincia' => ValorPost ( 'provincia' ),
+				'email' => ValorPost ( 'email' ),
+				'estado' => ValorPost ( 'estado' ),
+				'observaciones' => ValorPost ( 'observaciones' ) 
 		);
 	}
 	/**
@@ -184,13 +220,13 @@ class controlador {
 	 * @param number $valorPorDefecto        	
 	 * @return string
 	 */
-	function CreaSelect($name, $opciones, $valorPorDefecto=0) {
-
+	function CreaSelect($name, $opciones, $valorPorDefecto = 0) {
 		$html = '';
 		
 		$html .= '<select name="' . $name . '">';
-		
+		$html .= "<option value= '' selected=selected></option>";
 		foreach ( $opciones as $clave => $valor ) {
+			
 			$html .= '<option value="' . $clave . '" ';
 			
 			$html .= ($clave == $valorPorDefecto) ? ' selected="selected">' . $valor : ' >' . $valor."";
@@ -200,16 +236,23 @@ class controlador {
 		return $html;
 	}
 	
-	function CreaSelectID($name, $opciones, $valorPorDefecto=0) {
+	/**
+	 *  Crea select para el id de envios 
+	 * @param nombre del select $name
+	 * @param array de datos $opciones
+	 * @return string
+	 */
+		function CreaSelectID($name, $opciones) {
 	
 		$html = '';
 	
 		$html .= '<select name="' . $name . '">';
-	
+		$html.="<option value= '' selected=selected></option>";
 		foreach ( $opciones as $clave => $valor ) {
-			$html .= '<option value="' . $valor . '" ';
+			
+			$html .= '<option value=' . $valor . '>' . $valor."";
+			//$html .= ($clave == $valorPorDefecto) ? ' selected="selected">' . $valor : ' >' . $valor."";
 				
-			$html .= ($clave == $valorPorDefecto) ? ' selected="selected">' . $valor : ' >' . $valor."";
 			$html .= '</option>';
 		}
 		$html .= '</select>';

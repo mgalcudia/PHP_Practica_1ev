@@ -7,6 +7,7 @@ foreach ( $idenvios as $clave => $valor ){
 }
 */
 ?>
+<span class="titulo"><?= $titulo ?></span>
 <form action="?action=buscar" method="post">
 	<p>
 		Nombre: <input type="text" name="destinatario"
@@ -30,3 +31,4 @@ foreach ( $idenvios as $clave => $valor ){
 		<input type="submit" value="Buscar">
 	</p>
 </form>
+<span class="sinDatos"><?=$sinDatos?> </span>

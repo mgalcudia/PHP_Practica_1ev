@@ -1,7 +1,7 @@
 
  
 <div class="contenedor">
-<span class="titulo">Listar envios</span>
+<span class="titulo"><?= $titulo ?></span>
 			<table border='1'>
 			<tr>
 			<td>Número de envio</td>

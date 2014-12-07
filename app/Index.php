@@ -25,21 +25,15 @@ if (isset($_GET['action']) && $_GET['action']=='listar'){
 	
 }elseif (isset($_GET['action']) && $_GET['action']=='modificar'){
 	
-	if(isset($_GET['id'])){
-		$mvc->ModificaEnvios($_GET['id']);
-	}
-	else{
-		$mvc->ListarEnvios();
-		
-	}
-
+	$mvc->ModificaEnvios();	
 	
 }elseif (isset($_GET['action']) && $_GET['action']=='eliminar' ){
 	
-	$mvc->EliminaEnvios($_GET['id']);
+	$mvc->EliminaEnvios();
+	
 }elseif (isset($_GET['action']) && $_GET['action']=='insertar'){
 	
-	$mvc->EliminaEnvios($_GET['id']);
+	$mvc->InsertaEnvios();
 }elseif (isset($_GET['action']) && $_GET['action']=='anotar'){
 	
 	$mvc->AnotaRecepcion($_GET['id'], $observaciones);

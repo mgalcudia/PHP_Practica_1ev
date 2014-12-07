@@ -8,6 +8,9 @@
 		Destinatario : <input type="text" name="destinatario" value="<?=$this->ValorPost('destinatario')?>" />
 	</p>
 	<p>
+		Direccion : <input type="text" name="direccion" value="<?=$this->ValorPost('direccion')?>" />
+	</p>
+	<p>
 		Teléfono : <input type="text" name="telefono" value="<?=$this->ValorPost('telefono')?>" />
 	</p>
 	

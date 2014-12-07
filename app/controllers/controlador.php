@@ -134,10 +134,41 @@ class controlador {
 		
 	}
 	
-	function AnotaRecepcion($idRecepcion, $observaciones) {
-		if (isset ( $anotaRecepcion )) {
+	function AnotaRecepcion() {
+		$id = $this->modelo->ListaID ();
+		$titulo = "Anotar Recepcion";
+		$sinDatos = "";		
+		if (is_array ( $id )) {
+			foreach ( $id as $valor ) {
+				$idenvios [] = $valor ['idenvios'];
+			}
 		}
-		$anotaRecepcion = $this->modelo->AnotaRecepcion ( $idRecepcion, $observaciones );
+		
+		if(isset($_GET['idenvios'])){
+			$existeId = $this->modelo->ExisteId ( $_GET ['idenvios'] );
+			
+			
+			if($existeId){
+				$envio=$this->modelo->MuestraEnvio($_GET['idenvios']);
+				$this->pev($envio);
+				if(is_array($envio))
+				{
+					$envio = $envio[0];
+				}
+				$this->pev($envio);
+				//TODO:voy por aqui realizar el formulario para modificar el estado;
+				
+			}else{
+				echo "Ese id no existe";
+				include Raiz.'\views\FormularioAnotar.php';
+			}
+			
+		}else{
+			
+			include Raiz.'\views\FormularioAnotar.php';
+		}
+		
+		//$anotaRecepcion = $this->modelo->AnotaRecepcion ( $idRecepcion, $observaciones );
 	}
 	/**
 	 * funcion para listar los envios, tiene paginacion
@@ -247,7 +278,7 @@ class controlador {
 		$html = '';
 	
 		$html .= '<select name="' . $name . '">';
-		$html.="<option value= '' selected=selected></option>";
+		$html.="<option value= '00' selected=selected></option>";
 		foreach ( $opciones as $clave => $valor ) {
 			
 			$html .= '<option value=' . $valor . '>' . $valor."";

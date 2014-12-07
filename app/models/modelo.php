@@ -201,13 +201,13 @@ class modelo {
 		return $resultado;
 	}
 	/**
-	 * Muestra los datos de un envio concreto
+	 * Muestra los datos de un envio concreto 
 	 * @param id_envios $datos
 	 * @return array
 	 */
-	function MuestraEnvio($datos){
+	function MuestraEnvio($idenvios){
 		
-		$consulta= "SELECT * FROM envios WHERE idenvios =".$datos;
+		$consulta= "SELECT * FROM envios WHERE idenvios =".$idenvios;
 		
 		$this->bd->Consulta ( $consulta );
 		$resultado = [ ];

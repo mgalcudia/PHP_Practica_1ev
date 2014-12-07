@@ -36,7 +36,7 @@ if (isset($_GET['action']) && $_GET['action']=='listar'){
 	$mvc->InsertaEnvios();
 }elseif (isset($_GET['action']) && $_GET['action']=='anotar'){
 	
-	$mvc->AnotaRecepcion($_GET['id'], $observaciones);
+	$mvc->AnotaRecepcion();
 }
 
 else{

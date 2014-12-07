@@ -1,5 +1,4 @@
 <div class="formulario">
-
 <form action="" method="post">
 <div class="izquierda">
 <span class="titulo"><?= $titulo ?></span>
@@ -9,6 +8,9 @@
 
 	<p>
 		Destinatario : <input type="text" name="destinatario" value="<?=$envio['destinatario']?>" />
+	</p>
+	<p>
+		Direccion : <input type="text" name="direccion" value="<?=$envio['direccion']?>" />
 	</p>
 	<p>
 		Teléfono : <input type="text" name="telefono" value="<?=$envio['telefono']?>" />

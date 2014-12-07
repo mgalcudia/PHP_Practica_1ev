@@ -159,7 +159,7 @@ class modelo {
 	 *        	id de la tabla $id
 	 * @param array $observaciones        	
 	 */
-	function AnotaRecepcion($id, $observaciones) {
+	function AnotaRecepcion($observaciones,$id ) {
 		$consulta = "update envios set estado = 'e', fec_entrega = curdate(), observaciones= '" . $observaciones . "' where idenvios= " . $id;
 		
 		if ($consulta) {

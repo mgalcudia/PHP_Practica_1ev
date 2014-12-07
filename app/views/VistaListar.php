@@ -16,9 +16,12 @@
 			<td>Fecha creación</td>
 			<td>Fecha estrega</td>
 			<td>Observaciones</td>
+			<?php if($borrar):?>
 			<td>Borrar</td>
+			<?php  endif;
+					if($modificar):?>
 			<td>Modificar</td>
-			
+			<?php endif;  ?>
 		</tr>
 		
 
@@ -31,12 +34,16 @@ foreach ( $listaEnvios as $clave => $valor ) {
 		echo$informacion;
 		echo "</td>";		
 	}	
+	if($borrar){
 	echo "<td>";
 	echo  '<a href=index.php?action=eliminar&id='.$valor['idenvios'] .'>Borrar</a>';
 	echo "</td>";
+	}
+	if($modificar){
 	echo "<td>";
 	echo  '<a href=index.php?action=modificar&id='.$valor['idenvios'] .'>Modificar</a>';
 	echo "</td>";
+	}
 	echo "</tr>";
 }
  
@@ -44,7 +51,7 @@ echo"</table>";
 
 if(isset($paginasTotales)){
 	echo '<a href=index.php?action=listar&pagina=0>Primera  </a>';
-	for($i=0;$i<$paginasTotales;$i++){
+	for($i=1;$i<=$paginasTotales;$i++){
 	
 if($i==1 ||$i==$paginasTotales ||  $i==$paginaActual||($i > $paginaActual - 2 && $i <= $paginaActual + 2)){
 

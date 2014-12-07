@@ -8,7 +8,7 @@ Seleccione el pedido entregado:
 </p>
 <input type="hidden" name="action" value="anotar" />
 	 <p>										
-			Codigo envios:<?=$this->CreaSelectID('idenvios',$idenvios)?>
+ Código de envios: <input type="text" name="idenvios" value="" />
 		</p>
 
 

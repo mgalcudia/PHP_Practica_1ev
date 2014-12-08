@@ -1,7 +1,6 @@
+<span class="titulo"><?= $titulo ?></span>
 <div class="formulario">
 <form action="" method="post">
-<div class="izquierda">
-<span class="titulo"><?= $titulo ?></span>
 	<p>
 		Código de envios: <input type="text" name="id" readonly="readonly" value="<?= $this->ValorGet('id')?>" />
 	</p>
@@ -15,8 +14,6 @@
 	<p>
 		Teléfono : <input type="text" name="telefono" value="<?=$envio['telefono']?>" />
 	</p>
-	
-
 	<p>
 		Código Postal: <input type="text" name="cod_postal"	value="<?= $envio['cod_postal']?>" />
 	</p>
@@ -36,7 +33,7 @@
 		<p>
 		<textarea name="observaciones" rows="5" cols="50" value="<?= $envio['observaciones']?>"></textarea>
 	</p>
-	<p><input type="submit" value="Modificar"> </p>
-</div>
+	<p><input type="submit" value="Aceptar"> </p>
+
 </form>
 </div>

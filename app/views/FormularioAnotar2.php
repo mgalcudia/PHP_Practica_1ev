@@ -1,7 +1,8 @@
+<span class="titulo"><?= $titulo ?></span>
 <div class="formulario">
 <form action="" method="post">
-<div class="izquierda">
-<span class="titulo"><?= $titulo ?></span>
+
+
 	<p>
 		Código de envios: <input type="text" name="idenvios" readonly="readonly" value="<?= $envio['idenvios']?>" />
 	</p>
@@ -39,6 +40,6 @@
 	</p>
 	  Los datos se guardarán de la siguiente forma.
 	<p><input type="submit" value="Aceptar"> </p>
-</div>
+
 </form>
 </div>

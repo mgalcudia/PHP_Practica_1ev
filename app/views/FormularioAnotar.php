@@ -1,19 +1,15 @@
-<div class="formulario">
-<form action="" method="get">
-
-<div class="izquierda">
+<div class="contenedor">
 <span class="titulo"><?=$titulo?></span>
-<p>
-Seleccione el pedido entregado:
-</p>
-<input type="hidden" name="action" value="anotar" />
-	 <p>										
- Código de envios: <input type="text" name="idenvios" value="" />
+<div class="formulario">
+	<form action="" method="get">
+		<p>
+		Seleccione el pedido entregado:
 		</p>
-
-
-	<p><input type="submit" value="Modificar"> </p>
-
+		<input type="hidden" name="action" value="anotar" />
+			 <p>										
+		 Código de envios: <input type="text" name="idenvios" value="" />
+				</p>		
+			<p><input type="submit" value="Aceptar"> </p>
+	</form>
 </div>
-</form>
 </div>

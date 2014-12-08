@@ -20,12 +20,13 @@ class controlador {
 		$id = $this->modelo->ListaID ();
 		$titulo = "Buscar envios";
 		$sinDatos = "";
+		$borrar=false;
+		$modificar=false;
 		if (is_array ( $id )) {
 			foreach ( $id as $valor ) {
 				$idenvios [] = $valor ['idenvios'];
 			}
-		}
-		
+		}		
 		if ($_POST) {
 			$listaEnvios = $this->modelo->BuscarEnvios ( $_POST );
 			if (empty ( $listaEnvios )) {
@@ -70,7 +71,7 @@ class controlador {
 							$envio = $campos [0];
 						}
 						$titulo = "Modificar envios";
-						include Raiz . '\views\Formulario.php';
+						include Raiz . '\views\ModificaFormulario.php';
 						// no hay post
 					}
 				} elseif (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "no") {
@@ -85,7 +86,7 @@ class controlador {
 		} else {
 			$titulo = "Modificar";
 			$listaEnvios = $this->modelo->TodosEnvios ();
-			// include Raiz .'\views\Formulario.php';
+			
 			include Raiz . '\views\VistaListar.php';
 		}
 	}
@@ -105,7 +106,7 @@ class controlador {
 					$this->modelo->EliminaEnvios ( $_GET ['id'] );
 					$titulo = "Eliminar";
 					$listaEnvios = $this->modelo->TodosEnvios ();
-					// include Raiz .'\views\Formulario.php';
+					
 					include Raiz . '\views\VistaListar.php';
 				} elseif (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "no") {
 					header ( 'Location:index.php?action=listar' ); // TODO: mostrar los listados
@@ -118,8 +119,7 @@ class controlador {
 			}
 		} else {
 			$titulo = "Eliminar";
-			$listaEnvios = $this->modelo->TodosEnvios ();
-			// include Raiz .'\views\Formulario.php';
+			$listaEnvios = $this->modelo->TodosEnvios ();		
 			include Raiz . '\views\VistaListar.php';
 		}
 	}
@@ -139,7 +139,7 @@ class controlador {
 			echo "Envio agregado";
 		} else {
 			
-			$titulo = "Insertar un envios";
+			$titulo = "Insertar envios";
 			include Raiz . '\views\FormularioAgregar.php';
 		}
 	}

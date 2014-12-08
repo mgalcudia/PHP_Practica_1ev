@@ -1,8 +1,26 @@
+body{
+
+	background-image: url("../img/fondo.jpg");
+}
+
+
+button{
+
+	margin: 0 auto;
+	border-radius: 10px;
+}
+
+/**
+ * titulo informativo de las operaciones
+ */
 .titulo{
 	margin:0 auto;
 	color: blue;
 	font-size: 2em;
+	position: relative;
+	margin-left: 30%;
 	text-align: center;
+
 }
 
 .menu{
@@ -10,19 +28,73 @@
 	float:left;
 }
 
+/**
+ * contiene los enlaces de la paina
+ */
 .menu ul{
 	list-style:none;
+	position: relative;
+	margin-top: 100%;
+	font-size: 1.2em;
+
+
 }
 
+/**
+ *  formulario para mostrar datos de modificar, 
+ */
 .formulario{
 	
 	position: relative;
-	text-align: center;
-	
+	 margin-left: 40%;
+	 margin-top: 5%;
+	 width: 25%;
+
 }
 
 .izquierda{
 	position: relative;
 	float:left;
 	
+}
+
+/**
+ * muestra el resultado de las consultas
+ */
+.resultado{
+ 
+ 	border-collapse: collapse;
+ 
+ 	margin: 0 auto;
+
+
+
+}
+
+table{
+	
+	border: .1px solid red;
+	border-collapse: collapse;
+	width: 80%;
+	height: 50%
+
+}
+
+
+/**
+ * contenedor de todas las vistas
+ */
+.contenedor{
+margin: 0 auto;
+
+
+}
+
+
+/**
+ * sin datos en buscar
+ */
+.sinDatos{
+
+
 }

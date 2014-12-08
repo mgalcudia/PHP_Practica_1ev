@@ -3,11 +3,13 @@
 <form action="" method="post">
 	<p>
 		Código de envios: <input type="text" name="id" readonly="readonly" value="<?= $this->ValorGet('id')?>" />
+
 	</p>
 
 	<p>
 		Destinatario : <input type="text" name="destinatario" value="<?=$envio['destinatario']?>" />
-	</p>
+	</p> 
+
 	<p>
 		Direccion : <input type="text" name="direccion" value="<?=$envio['direccion']?>" />
 	</p>

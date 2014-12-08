@@ -42,12 +42,9 @@ class controlador {
 		}
 	}
 	
-	/**
-	 * funcion del controlador para modificar los envios
-	 *
-	 * @param unknown $datosmodificado        	
-	 * @param unknown $id        	
-	 */
+/**
+ * funcion del controlador para modificar los envios
+ */
 	function ModificaEnvios() {
 		$borrar = false;
 		$modificar = true;
@@ -241,24 +238,7 @@ class controlador {
 			return $valorPorDefecto;
 	}
 	
-	/**
-	 * crea un array con los valores recogidos por post
-	 *
-	 * @return array
-	 */
-	function CreaArrayDatos() {
-		$datos = array (
-				'destinatario' => ValorPost ( 'destinatario' ),
-				'telefono' => ValorPost ( 'telefono' ),
-				'direccion' => ValorPost ( 'direccion' ),
-				'poblacion' => ValorPost ( 'poblacion' ),
-				'cod_postal' => ValorPost ( 'cod_postal' ),
-				'provincia' => ValorPost ( 'provincia' ),
-				'email' => ValorPost ( 'email' ),
-				'estado' => ValorPost ( 'estado' ),
-				'observaciones' => ValorPost ( 'observaciones' ) 
-		);
-	}
+
 	/**
 	 * funcion para crear el menu desplegable de provincias
 	 *

@@ -5,6 +5,7 @@
 		<p>
 			Nombre: <input type="text" name="destinatario"
 				value="<?=$this->ValorPost('destinatario')?>">
+				
 		</p>
 		<p>
 				Provincia: <?= $this->CreaSelect('provincia',$provincias)?>

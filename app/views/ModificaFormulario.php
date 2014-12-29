@@ -20,13 +20,13 @@
 		Código Postal: <input type="text" name="cod_postal"	value="<?= $envio['cod_postal']?>" />
 	</p>
 	<p>
-			Provincia: <?= $this->CreaSelect('provincia',$provincias)?>
+			Provincia: <?= $this->CreaSelect('provincia',$provincias,$envio['provincia'])?>
 		</p>
 	<p>
 		Correo electronico: <input type="text" name="email"	value="<?= $envio['email']?>" />
 	</p>
 	<p>
-		Fecha de creacion: <input type="date" name="fec_creacion" value="<?= $envio['fec_creacion']?>" />
+		Fecha de creacion: <input type="date" name="fec_creacion"  value="<?= $envio['fec_creacion']?>" />
 	</p>
 
 	<p>

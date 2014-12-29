@@ -127,17 +127,35 @@ class controlador {
 	 * funcion para insertar los envios
 	 */
 	function InsertaEnvios() {
+		
 		$provincias = $this->modelo->ListarProvincias ();
-		// $insertEnvio = $this->modelo->InsertaEnvios ( $datos );
+		
 		if ($_POST) {
-			$consulta = $this->modelo->ObtenProvincia ( $_POST ['provincia'] );			
+			
+			$error= $this->Filtro($_POST);
+			if(($_POST ['provincia']))
+			{
+			$consulta = $this->modelo->ObtenProvincia ( $_POST ['provincia'] );	
+				
 			$resultado = array_merge ( $_POST, $consulta );
-			 $this->pev($resultado);
-			 $error= $this->Filtro($resultado);
+			
+			}
+			
 			 
-			 $this->pev($error);
-			//$this->modelo->InsertaEnvios ( $resultado );
-			echo "Envio agregado";
+			 if($error){
+			 	
+			 	$titulo = "Insertar envios";
+			 	include Raiz . '\views\FormularioAgregar.php';
+			 	
+			 }else{
+
+			 	$this->modelo->InsertaEnvios ( $resultado );
+			    echo "Envio agregado";
+			 	
+			 }
+			 
+			 
+			
 		} else {
 			
 			$titulo = "Insertar envios";
@@ -228,6 +246,9 @@ class controlador {
 			return $valorPorDefecto;
 	}
 	
+	
+
+	
 	/**
 	 * funcion que recoge el valor get por defecto *
 	 * 
@@ -306,14 +327,14 @@ class controlador {
 		{
 			if($datos['idenvios']==='')
 			{
-				$err['idenvios'] = 'cod_envio_no_especificado';
+				$err['idenvios'] = 'idenvios no especificado';
 			}
 			else
 			{
 				if(!filter_var($datos['idenvios'], FILTER_VALIDATE_INT,
 						array( 'options' => array('min_range' => 1, 'max_range' => 99999999999))))
 				{
-					$err['idenvios'] = 'cod_envio_no_valido';
+					$err['idenvios'] = 'idenvios no valido';
 				}
 			}
 		}
@@ -321,14 +342,14 @@ class controlador {
 		{
 			if(empty($datos['destinatario']))
 			{
-				$err['destinatario'] = 'destinatario_no_especificado';
+				$err['destinatario'] = 'destinatario no especificado';
 			}
 			else
 			{
 				$patron = "/^[a-zA-ZaáéíóúäëïöüÁÉÍÓÚÄËÏÖÜñÑ ]+/";
 				if(!preg_match($patron, $datos['destinatario']))
 				{
-					$err['destinatario'] = 'destinatario_no_valido';
+					$err['destinatario'] = 'destinatario no valido';
 				}
 			}
 		}
@@ -336,7 +357,7 @@ class controlador {
 		{
 			if($datos['telefono']==='')
 			{
-				$err['telefono'] = 'telefono_no_especificado';
+				$err['telefono'] = 'telefono no especificado';
 			}
 			else
 			{
@@ -345,15 +366,18 @@ class controlador {
                 (#|x|(ext))\.?\s*)\d{1,5})?(?!:(\Z|\w|\b\s))/";
 				if(!preg_match($patron, $datos['telefono']))
 				{
-					$err['telefono'] = 'telefono_no_valido';
+					$err['telefono'] = 'telefono no valido';
 				}
 			}
 		}
 		if(isset($datos['direccion'])) {
+			//$err['direccion'] = 'direccion_no_especificada';
 			$patron = "/^[a-zA-Z 0-9 üÜáéíóúÁÉÍÓÚñÑ,.-ºª\"]{1,45}$/";
-			if (!$datos['direccion']==='') {
+			if ($datos['direccion']==='') {
+				$err['direccion'] = 'direccion no especificada';
+			}else {
 				if (!preg_match($patron, $datos['direccion'])) {
-					$err['direccion'] = 'direccion_no_valida';
+					$err['direccion'] = 'direccion no valida';
 				}
 			}
 		}
@@ -363,18 +387,20 @@ class controlador {
 			{
 				if(!preg_match("/^[a-zA-Z ]{1,25}$/", $datos['poblacion']))
 				{
-					$err['poblacion'] = 'poblacion_no_valida';
+					$err['poblacion'] = 'poblacion no valida';
 				}
 			}
 		}
 		if(isset($datos['cod_postal']))
 		{
-			if($datos['cod_postal']!=='')
+			$patron = "/^0[1-9][0-9]{3}|[1-4][0-9]{4}|5[0-2][0-9]{3}$/";
+			if($datos['cod_postal']==='')
 			{
-				$patron = "/^0[1-9][0-9]{3}|[1-4][0-9]{4}|5[0-2][0-9]{3}$/";
+				$err['cod_postal'] = 'cod postal no especificada';
+			}else{
 				if(!preg_match($patron, $datos['cod_postal']))
 				{
-					$err['cod_postal'] = 'cod_postal_no_valido';
+					$err['cod_postal'] = 'cod postal no valido';
 				}
 			}
 		}
@@ -382,14 +408,14 @@ class controlador {
 		{
 			if($datos['provincia']==='00')
 			{
-				$err['provincia'] = 'provincia_no_especificada';
+				$err['provincia'] = 'provincia no especificada';
 			}
 			else
 			{
 				$patron = "/^0[1-9]|[1-4][0-9]|5[0-2]$/";
 				if(!preg_match($patron, $datos['provincia']))
 				{
-					$err['provincia'] = 'provincia_no_valida';
+					$err['provincia'] = 'provincia no valida';
 				}
 			}
 		}
@@ -397,13 +423,13 @@ class controlador {
 		{
 			if($datos['email']==='')
 			{
-				$err['email'] = 'email_no_especificado';
+				$err['email'] = 'email no especificado';
 			}
 			else
 			{
 				if(!filter_var($datos['email'], FILTER_VALIDATE_EMAIL))
 				{
-					$err['email'] = 'email_no_valido';
+					$err['email'] = 'email no valido';
 				}
 			}
 		}
@@ -412,6 +438,7 @@ class controlador {
 	
 	function pev($motrar) {
 		echo "<pre>";
+		echo "resultado";
 		print_r ( $motrar );
 		echo "</pre>";
 	}

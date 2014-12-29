@@ -89,7 +89,11 @@ margin: 0 auto;
 
 
 }
-
+.error{
+	font-size: small;
+	color: red;
+	
+}
 
 /**
  * sin datos en buscar

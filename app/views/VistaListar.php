@@ -61,8 +61,9 @@
 		
 		}
 		echo '<a href=index.php?action=listar&pagina='.$paginasTotales.'>Ultima  </a>';
-		}
 		echo '<br/> Página actual: '.$paginaActual;
+		}
+		
 			?>
 		</div>
 </div>

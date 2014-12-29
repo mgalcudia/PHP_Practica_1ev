@@ -253,6 +253,7 @@ class modelo {
 	
 	
 	function ObtenProvincia($id){
+		$resultado='';
 		$consulta= "select nombre from provincias where id_provincias=".$id;
 		$this->bd->Consulta($consulta);
 		while($registro=$this->bd->LeeRegistro()){

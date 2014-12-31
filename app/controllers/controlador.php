@@ -57,7 +57,7 @@ class controlador {
 				if (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "si") {
 					if ($_POST) { // si hay post incluye los datos
 						$error=$this->Filtro($_POST);
-						$this->pev($error);
+						//$this->pev($error);
 						unset ( $_POST ['id'] );//Quitamos el id del post
 						
 						if(($_POST ['provincia'])){
@@ -68,11 +68,12 @@ class controlador {
 							
 							$titulo = "Modificar envios";
 							include Raiz . '\views\ModificaFormulario.php';
+						}else{
+							
+						$consulta = $this->modelo->ModificaEnvio ( $resultado, $_GET ['id'] );
+						header ( 'Location:index.php?action=listar' );	
+							
 						}
-						
-						//$consulta = $this->modelo->ModificaEnvio ( $resultado, $_GET ['id'] );
-						//header ( 'Location:index.php?action=listar' );
-						
 					} else {
 						$campos = $this->modelo->MuestraEnvio ( $_GET ['id'] );
 						

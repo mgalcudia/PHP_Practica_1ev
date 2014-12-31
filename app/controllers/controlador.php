@@ -54,7 +54,7 @@ class controlador {
 		if (isset ( $_GET ['id'] )) {
 			$existeId = $this->modelo->ExisteId ( $_GET ['id'] );
 			if ($existeId) {
-				if (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "si") {
+			
 					if ($_POST) { // si hay post incluye los datos
 						$error=$this->Filtro($_POST);
 						//$this->pev($error);
@@ -84,11 +84,7 @@ class controlador {
 						include Raiz . '\views\ModificaFormulario.php';
 						// no hay post
 					}
-				} elseif (isset ( $_GET ['confirmar'] ) && $_GET ['confirmar'] == "no") {
-					header ( 'Location:index.php?action=listar' );
-				} else {
-					include Raiz . '\views\ModificarRegistro.php';
-				}
+				
 			} else {
 				include Raiz . '\views\CambiarIdModificar.php';
 				// formulario para cambiar la id CambiarIdModificar.php

@@ -20,7 +20,7 @@
 		Estado: <input type="text" name="" readonly="readonly" value="entregado" />
 	</p>
 	<p>
-		Código Postal: <input type="text" name="" readonly="readonly"	value="<?= $envio['cod_postal']?>" />
+		Código Postal: <input type="text" name="" maxlength="5" readonly="readonly"	value="<?= $envio['cod_postal']?>" />
 	</p>
 	<p>
 			Provincia: <input type="text" name="" readonly="readonly"	value="<?= $envio['poblacion']?>" />

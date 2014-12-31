@@ -20,7 +20,7 @@
 		<div class="error"> <?=(isset($error['telefono']))?$error['telefono']:''?></div>
 	</p>
 	<p>
-		Código Postal: <input type="text" name="cod_postal"	value="<?=(isset($envio['cod_postal']))?$envio['cod_postal']:$this->ValorPost('cod_postal')?>" />
+		Código Postal: <input type="text" maxlength="5" name="cod_postal"	value="<?=(isset($envio['cod_postal']))?$envio['cod_postal']:$this->ValorPost('cod_postal')?>" />
 		<div class="error"> <?=(isset($error['cod_postal']))?$error['cod_postal']:''?> </div>
 	</p>
 	<p>

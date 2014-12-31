@@ -16,7 +16,7 @@
 			Población: <input type="text" name="poblacion" value="<?= $envio['poblacion']?>" />
 		</p> 
 		<p>
-			Código Postal: <input type="text" name="cod_postal"	value="<?= $envio['cod_postal']?>" />
+			Código Postal: <input type="text" name="cod_postal"	 maxlength="5" value="<?= $envio['cod_postal']?>" />
 		</p>
 		<p>
 				Provincia: <?= $this->CreaSelect('provincia',$provincias , $envio['provincia'])?>

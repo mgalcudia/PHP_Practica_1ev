@@ -4,11 +4,11 @@
 	<form action="?action=buscar" method="post">
 		<p>
 			Nombre: <input type="text" name="destinatario"
-				value="<?=$this->ValorPost('destinatario')?>">
+				value="<?=ValorPost('destinatario')?>">
 				
 		</p>
 		<p>
-				Provincia: <?= $this->CreaSelect('provincia',$provincias)?>
+				Provincia: <?=CreaSelect('provincia',$provincias,ValorPost('provincia'))?>
 		</p>
 		<p>
 			Estado: <select name="estado">
@@ -19,7 +19,7 @@
 			</select>
 		</p>
 		<p>										
-				Codigo envios:<?=$this->CreaSelectID('idenvios',$idenvios)?>
+				Codigo envios:<?=CreaSelectID('idenvios',$idenvios,ValorPost('idenvios'))?>
 			</p>
 		<p>
 			<input type="submit" value="Buscar">

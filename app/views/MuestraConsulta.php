@@ -19,7 +19,7 @@
 			Código Postal: <input type="text" name="cod_postal"	 maxlength="5" value="<?= $envio['cod_postal']?>" />
 		</p>
 		<p>
-				Provincia: <?= $this->CreaSelect('provincia',$provincias , $envio['provincia'])?>
+				Provincia: <?=CreaSelect('provincia',$provincias , $envio['provincia'])?>
 			</p>
 		<p>
 			Correo electronico: <input type="text" name="email"	value="<?= $envio['email']?>" />
